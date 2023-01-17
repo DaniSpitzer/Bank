@@ -1,8 +1,8 @@
 public class Credit extends Account {
 
 
-    public Credit(String name){
-        super (name);
+    public Credit(String name, Bank bank){
+        super (name, bank);
     }
 
     @Override
@@ -12,13 +12,23 @@ public class Credit extends Account {
 
     @Override
     public void pay(int paymentValue) {
-        int fee = 5;
-        balance -= (paymentValue + fee);
+        if(balance < 0) {
+            int fee = 5;
+            balance -= (paymentValue + fee);
+            System.out.println("Payment completed, your credit account balance is: " + getBalance() + "€");
+        } else if (balance < -100) {
+            System.out.println("Your account balance is less than -100€, you can't pay.");
+        } else{
+            balance -= paymentValue;
+            System.out.println("Payment completed, your credit account balance is: " + getBalance() + "€");
+        }
+
     }
 
     @Override
     public void depositMoney(int value){
         balance += value;
+        System.out.println("Deposit completed on credit account, your credit account balance is: " + getBalance() + "€");
     }
 
 }

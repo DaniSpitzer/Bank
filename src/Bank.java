@@ -1,21 +1,22 @@
 public class Bank {
 
-    private String name;
-
-    private Bank[] accounts;
-
+    private String bankName;
 
     public Bank(String name) {
-        this.name = name;
+        this.bankName = name;
     }
 
-    public static Debit createDebitAccount(String customerName){
-        Debit d1 = new Debit(customerName);
+    public String getBankName() {
+        return bankName;
+    }
+
+    public Debit createDebitAccount(String customerName){
+        Debit d1 = new Debit(customerName, this);
         return d1;
     }
 
-    public static Credit createCreditAccount(String customerName){
-        Credit c1 = new Credit(customerName);
+    public Credit createCreditAccount(String customerName){
+        Credit c1 = new Credit(customerName, this);
         return c1;
     }
 
